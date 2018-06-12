@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import IngredientsContainer from "./IngredientsContainer";
-import UserRecipe from "./UserRecipe";
+import UserRecipeContainer from "./UserRecipeContainer";
 
 class App extends Component {
   constructor() {
@@ -12,9 +12,7 @@ class App extends Component {
   }
 
   handleIngredientClick = ingrid => {
-    this.setState({ userRecipe: [...this.state.userRecipe, ingrid] }, () =>
-      console.log(this.state)
-    );
+    this.setState({ userRecipe: [...this.state.userRecipe, ingrid] });
   };
 
   render() {
@@ -23,7 +21,7 @@ class App extends Component {
     return (
       <div className="ui grid">
         <div className="nine wide column">
-          <UserRecipe userRec={userRec} />
+          <UserRecipeContainer userRec={userRec} />
         </div>
 
         <div className="seven wide column">
