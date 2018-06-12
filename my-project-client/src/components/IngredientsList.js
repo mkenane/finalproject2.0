@@ -3,7 +3,6 @@ import Ingredient from "./Ingredient";
 
 class IngredientsList extends Component {
   render() {
-    // console.log(this.props.allIngredients);
     return (
       <table className="ui celled striped padded table">
         <tbody>
@@ -13,7 +12,13 @@ class IngredientsList extends Component {
             </th>
           </tr>
           {this.props.allIngredients.map(ingred => {
-            return <Ingredient key={ingred.id} ingredient={ingred} />;
+            return (
+              <Ingredient
+                key={ingred.id}
+                ingredient={ingred}
+                handleIngredientClick={this.props.handleIngredientClick}
+              />
+            );
           })}
         </tbody>
       </table>

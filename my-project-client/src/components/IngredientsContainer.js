@@ -24,20 +24,22 @@ class IngredientsContainer extends Component {
       return ingred.name.includes(searchTerm);
     });
     // console.log(ingredientMatches);
-    this.setState({ searchTermMatches: ingredientMatches }, () =>
-      console.log(this.state)
-    );
+    this.setState({ searchTermMatches: ingredientMatches });
   };
 
   render() {
-    const ingreds =
+    const searchedIngreds =
       this.state.searchTermMatches.length > 0
         ? this.state.searchTermMatches
         : this.state.allIngredients;
+
     return (
       <div className="ui raised segment">
         <SearchIngredients searchFunc={this.handleSearchChange} />
-        <IngredientsList allIngredients={ingreds} />
+        <IngredientsList
+          allIngredients={searchedIngreds}
+          handleIngredientClick={this.props.handleIngredientClick}
+        />
       </div>
     );
   }

@@ -7,18 +7,29 @@ class App extends Component {
     super();
 
     this.state = {
-      UserRecipe: []
+      userRecipe: []
     };
   }
+
+  handleIngredientClick = ingrid => {
+    this.setState({ userRecipe: [...this.state.userRecipe, ingrid] }, () =>
+      console.log(this.state)
+    );
+  };
+
   render() {
+    const userRec =
+      this.state.userRecipe.length > 0 ? this.state.userRecipe : [];
     return (
       <div className="ui grid">
         <div className="nine wide column">
-          <UserRecipe />
+          <UserRecipe userRec={userRec} />
         </div>
 
         <div className="seven wide column">
-          <IngredientsContainer />
+          <IngredientsContainer
+            handleIngredientClick={this.handleIngredientClick}
+          />
         </div>
       </div>
     );

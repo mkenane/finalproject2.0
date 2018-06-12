@@ -3,7 +3,6 @@ import { Form } from "semantic-ui-react";
 
 class SearchIngredients extends Component {
   render() {
-    console.log(this.props);
     return (
       <Form>
         <div className="ui huge fluid icon input">
