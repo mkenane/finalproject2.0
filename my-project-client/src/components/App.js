@@ -1,17 +1,21 @@
 import React, { Component } from "react";
 import IngredientsContainer from "./IngredientsContainer";
 import UserRecipeContainer from "./UserRecipeContainer";
+import AdjustedRecipeContainer from "./AdjustedRecipeContainer";
+import Adjustments from "./Adjustments";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      userRecipe: []
+      userRecipe: [],
+      adjustedRecipe: []
     };
   }
 
   handleIngredientClickAddition = ingrid => {
+    console.log(ingrid.ingredient);
     let foundIngrid = this.state.userRecipe.find(ingr => {
       return ingr.ingredient.id === ingrid.ingredient.id;
     });
@@ -38,6 +42,8 @@ class App extends Component {
             userRec={userRec}
             handleIngredientClickRemoval={this.handleIngredientClickRemoval}
           />
+          <Adjustments />
+          <AdjustedRecipeContainer userRec={this.state.adjustedRecipe} />
         </div>
 
         <div className="seven wide column">
