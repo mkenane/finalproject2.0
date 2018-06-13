@@ -16,7 +16,9 @@ class IngredientsList extends Component {
               <Ingredient
                 key={ingred.id}
                 ingredient={ingred}
-                handleIngredientClick={this.props.handleIngredientClick}
+                handleIngredientClickAddition={
+                  this.props.handleIngredientClickAddition
+                }
               />
             );
           })}

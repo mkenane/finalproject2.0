@@ -38,7 +38,9 @@ class IngredientsContainer extends Component {
         <SearchIngredients searchFunc={this.handleSearchChange} />
         <IngredientsList
           allIngredients={searchedIngreds}
-          handleIngredientClick={this.props.handleIngredientClick}
+          handleIngredientClickAddition={
+            this.props.handleIngredientClickAddition
+          }
         />
       </div>
     );

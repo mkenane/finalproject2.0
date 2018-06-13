@@ -11,8 +11,19 @@ class App extends Component {
     };
   }
 
-  handleIngredientClick = ingrid => {
-    this.setState({ userRecipe: [...this.state.userRecipe, ingrid] });
+  handleIngredientClickAddition = ingrid => {
+    let foundIngrid = this.state.userRecipe.find(ingr => {
+      return ingr.ingredient.id === ingrid.ingredient.id;
+    });
+
+    if (!this.state.userRecipe.includes(foundIngrid)) {
+      this.setState({ userRecipe: [...this.state.userRecipe, ingrid] });
+    }
+  };
+
+  handleIngredientClickRemoval = ingrid => {
+    let newUserRecipe = this.state.userRecipe.filter(ingr => ingr !== ingrid);
+    this.setState({ userRecipe: newUserRecipe });
   };
 
   render() {
@@ -26,7 +37,7 @@ class App extends Component {
 
         <div className="seven wide column">
           <IngredientsContainer
-            handleIngredientClick={this.handleIngredientClick}
+            handleIngredientClickAddition={this.handleIngredientClickAddition}
           />
         </div>
       </div>
