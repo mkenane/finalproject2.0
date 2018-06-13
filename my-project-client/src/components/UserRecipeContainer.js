@@ -12,6 +12,9 @@ class UserRecipeContainer extends Component {
             <UserRecipeIngredient
               key={ingred.ingredient.id}
               ingredient={ingred}
+              handleIngredientClickRemoval={
+                this.props.handleIngredientClickRemoval
+              }
             />
           );
         })}

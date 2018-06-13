@@ -10,7 +10,9 @@ class UserRecipeIngredient extends Component {
           <button
             className="ui button"
             style={{ width: 150, height: 30 }}
-            onClick={event => this.props.handleIngredientClick(this.props)}
+            onClick={event =>
+              this.props.handleIngredientClickRemoval(this.props)
+            }
           >
             {" "}
             remove{" "}

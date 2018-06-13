@@ -22,8 +22,10 @@ class App extends Component {
   };
 
   handleIngredientClickRemoval = ingrid => {
-    let newUserRecipe = this.state.userRecipe.filter(ingr => ingr !== ingrid);
-    this.setState({ userRecipe: newUserRecipe });
+    let newUserRecipe = this.state.userRecipe.filter(
+      ingr => ingr.ingredient !== ingrid.ingredient.ingredient
+    );
+    this.setState({ userRecipe: newUserRecipe }, () => console.log(this.state));
   };
 
   render() {
@@ -32,7 +34,10 @@ class App extends Component {
     return (
       <div className="ui grid">
         <div className="nine wide column">
-          <UserRecipeContainer userRec={userRec} />
+          <UserRecipeContainer
+            userRec={userRec}
+            handleIngredientClickRemoval={this.handleIngredientClickRemoval}
+          />
         </div>
 
         <div className="seven wide column">
