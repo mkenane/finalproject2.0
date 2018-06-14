@@ -6,7 +6,12 @@ class Adjustments extends Component {
       <div className="ui raised segment">
         Select adjustments :
         <div>
-          <button className="ui button" style={{ width: 130, height: 30 }}>
+          <button
+            id="2"
+            className="ui button"
+            style={{ width: 130, height: 30 }}
+            onClick={this.props.handleGlutenFreeClick}
+          >
             gluten-free
           </button>
         </div>

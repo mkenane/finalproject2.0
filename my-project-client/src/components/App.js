@@ -10,12 +10,26 @@ class App extends Component {
 
     this.state = {
       userRecipe: [],
-      adjustedRecipe: []
+      adjustedRecipe: [],
+      categoryIngredients: [],
+      ingredients: []
     };
+  }
+  componentDidMount() {
+    fetch("http://localhost:3000/ingredients")
+      .then(resp => resp.json())
+      .then(jsonresp => this.setState({ ingredients: jsonresp }));
+
+    fetch("http://localhost:3000/relationships")
+      .then(resp => resp.json())
+      .then(jsonresp => this.setState({ relationships: jsonresp }));
+
+    fetch("http://localhost:3000/categoryingredients")
+      .then(resp => resp.json())
+      .then(jsonresp => this.setState({ categoryIngredients: jsonresp }));
   }
 
   handleIngredientClickAddition = ingrid => {
-    console.log(ingrid.ingredient);
     let foundIngrid = this.state.userRecipe.find(ingr => {
       return ingr.ingredient.id === ingrid.ingredient.id;
     });
@@ -29,7 +43,18 @@ class App extends Component {
     let newUserRecipe = this.state.userRecipe.filter(
       ingr => ingr.ingredient !== ingrid.ingredient.ingredient
     );
-    this.setState({ userRecipe: newUserRecipe }, () => console.log(this.state));
+    this.setState({ userRecipe: newUserRecipe });
+  };
+
+  handleGlutenFreeClick = event => {
+    console.log(event.target.id);
+    console.log(this.state.categoryIngredients);
+    let usercategoryingredients = this.state.userRecipe.filter(useringrid => {
+      return this.state.categoryIngredients.filter(catingrid => {
+        useringrid.ingredient.id === catingrid.ingredient_id;
+      });
+    });
+    console.log(usercategoryingredients);
   };
 
   render() {
@@ -42,7 +67,7 @@ class App extends Component {
             userRec={userRec}
             handleIngredientClickRemoval={this.handleIngredientClickRemoval}
           />
-          <Adjustments />
+          <Adjustments handleGlutenFreeClick={this.handleGlutenFreeClick} />
           <AdjustedRecipeContainer userRec={this.state.adjustedRecipe} />
         </div>
 

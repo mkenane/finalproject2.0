@@ -8,7 +8,8 @@ class IngredientsContainer extends Component {
 
     this.state = {
       allIngredients: [],
-      searchTermMatches: []
+      searchTermMatches: [],
+      relationships: []
     };
   }
   componentDidMount() {
