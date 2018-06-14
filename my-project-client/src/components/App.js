@@ -47,14 +47,17 @@ class App extends Component {
   };
 
   handleGlutenFreeClick = event => {
-    console.log(event.target.id);
-    console.log(this.state.categoryIngredients);
-    let usercategoryingredients = this.state.userRecipe.filter(useringrid => {
-      return this.state.categoryIngredients.filter(catingrid => {
-        useringrid.ingredient.id === catingrid.ingredient_id;
-      });
-    });
-    console.log(usercategoryingredients);
+    let test = [];
+
+    this.state.userRecipe.forEach(useringrid =>
+      this.state.categoryIngredients.forEach(catingrid => {
+        if (useringrid.ingredient.id === catingrid.ingredient_id) {
+          test.push(useringrid.ingredient);
+        }
+      })
+    );
+
+    console.log(test);
   };
 
   render() {
