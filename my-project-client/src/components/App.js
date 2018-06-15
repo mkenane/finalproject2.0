@@ -93,11 +93,18 @@ class App extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     console.log(completedUserRec);
+    this.setState({ adjustedRecipe: completedUserRec }, () =>
+      console.log(this.state.adjustedRecipe)
+    );
   };
 
   render() {
     const userRec =
       this.state.userRecipe.length > 0 ? this.state.userRecipe : [];
+
+    const adjustedRec =
+      this.state.adjustedRecipe.length > 0 ? this.state.adjustedRecipe : [];
+
     return (
       <div className="ui grid">
         <div className="nine wide column">
@@ -106,7 +113,7 @@ class App extends Component {
             handleIngredientClickRemoval={this.handleIngredientClickRemoval}
           />
           <Adjustments handleGlutenFreeClick={this.handleGlutenFreeClick} />
-          <AdjustedRecipeContainer userRec={this.state.adjustedRecipe} />
+          <AdjustedRecipeContainer adjustedRec={adjustedRec} />
         </div>
 
         <div className="seven wide column">

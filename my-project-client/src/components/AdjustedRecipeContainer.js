@@ -1,19 +1,19 @@
 import React, { Component } from "react";
-// import AdjustedRecipeIngredient from "./AdjustedRecipeIngredient";
+import AdjustedRecipeIngredient from "./AdjustedRecipeIngredient";
 
 class AdjustedRecipeContainer extends Component {
   render() {
-    return <div className="ui raised segment">Adjusted Recipe:</div>;
-    // {this.props.adjustedRecipe.map(ingred => {
-    //   return (
-    //     <AdjustedRecipeIngredient
-    //       key={ingred.ingredient.id}
-    //       ingredient={ingred}
-    //     />
-    //   );
-    // })}
-    //   </div>
-    // );
+    console.log(this.props);
+    return (
+      <div className="ui raised segment">
+        Adjusted Recipe:
+        {this.props.adjustedRec.map(ingred => {
+          return (
+            <AdjustedRecipeIngredient key={ingred.id} ingredient={ingred} />
+          );
+        })}
+      </div>
+    );
   }
 }
 
