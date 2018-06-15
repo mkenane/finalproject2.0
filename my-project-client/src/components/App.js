@@ -53,6 +53,7 @@ class App extends Component {
     let pendinguserrec = [];
     let replacingrelationships = [];
     let replacingingrids = [];
+    let almostcompletedUserRec = [];
 
     this.state.userRecipe.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
@@ -67,9 +68,9 @@ class App extends Component {
         }
       })
     );
-    console.log(pendinguserrec);
-    console.log(ingredientsToReplace);
-    console.log(this.state.relationships);
+    // console.log(pendinguserrec);
+    // console.log(ingredientsToReplace);
+    // console.log(this.state.relationships);
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -77,11 +78,19 @@ class App extends Component {
       });
     });
 
-    // replacingrelationships.forEach(repre => {
-    //   if ()
-    // })
+    replacingrelationships.forEach(repre =>
+      this.state.ingredients.forEach(ingrid => {
+        if (repre.replacement_ingredient_id === ingrid.id) {
+          replacingingrids.push(ingrid);
+        }
+      })
+    );
 
-    let completedUserRec = pendinguserrec.concat(replacingrelationships);
+    pendinguserrec.forEach(ingrid => {
+      almostcompletedUserRec.push(ingrid.ingredient);
+    });
+
+    let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     console.log(completedUserRec);
   };
