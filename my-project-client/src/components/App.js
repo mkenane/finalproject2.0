@@ -12,7 +12,8 @@ class App extends Component {
       userRecipe: [],
       adjustedRecipe: [],
       categoryIngredients: [],
-      ingredients: []
+      ingredients: [],
+      relationships: []
     };
   }
   componentDidMount() {
@@ -47,17 +48,42 @@ class App extends Component {
   };
 
   handleGlutenFreeClick = event => {
-    let test = [];
+    console.log(event.target.id);
+    let ingredientsToReplace = [];
+    let pendinguserrec = [];
+    let replacingrelationships = [];
+    let replacingingrids = [];
 
     this.state.userRecipe.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
-        if (useringrid.ingredient.id === catingrid.ingredient_id) {
-          test.push(useringrid.ingredient);
+        if (
+          useringrid.ingredient.id === catingrid.ingredient_id &&
+          catingrid.category_id === parseInt(event.target.id, 10)
+        ) {
+          ingredientsToReplace.push(useringrid);
+          pendinguserrec = this.state.userRecipe.filter(
+            ui => ui !== useringrid
+          );
         }
       })
     );
+    console.log(pendinguserrec);
+    console.log(ingredientsToReplace);
+    console.log(this.state.relationships);
 
-    console.log(test);
+    replacingrelationships = ingredientsToReplace.map(useringrid => {
+      return this.state.relationships.find(subingrid => {
+        return useringrid.ingredient.id === subingrid.ingredient_id;
+      });
+    });
+
+    // replacingrelationships.forEach(repre => {
+    //   if ()
+    // })
+
+    let completedUserRec = pendinguserrec.concat(replacingrelationships);
+
+    console.log(completedUserRec);
   };
 
   render() {

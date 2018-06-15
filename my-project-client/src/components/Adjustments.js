@@ -7,7 +7,7 @@ class Adjustments extends Component {
         Select adjustments :
         <div>
           <button
-            id="2"
+            id="4"
             className="ui button"
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleGlutenFreeClick}
