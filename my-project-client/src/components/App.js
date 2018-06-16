@@ -55,26 +55,31 @@ class App extends Component {
     let replacingingrids = [];
     let almostcompletedUserRec = [];
 
-    this.state.userRecipe.forEach(useringrid =>
+    let isolatingUserIngrids = this.state.userRecipe.map(ingrid => {
+      return ingrid.ingredient;
+    });
+    console.log(isolatingUserIngrids);
+    console.log(this.state.userRecipe);
+
+    isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
         if (
-          useringrid.ingredient.id === catingrid.ingredient_id &&
+          useringrid.id === catingrid.ingredient_id &&
           catingrid.category_id === parseInt(event.target.id, 10)
         ) {
           ingredientsToReplace.push(useringrid);
-          pendinguserrec = this.state.userRecipe.filter(
-            ui => ui !== useringrid
-          );
+          console.log(useringrid);
+          pendinguserrec = isolatingUserIngrids.filter(ui => ui !== useringrid);
         }
       })
     );
-    // console.log(pendinguserrec);
-    // console.log(ingredientsToReplace);
-    // console.log(this.state.relationships);
+    console.log(pendinguserrec);
+    console.log(ingredientsToReplace);
+    console.log(this.state.relationships);
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
-        return useringrid.ingredient.id === subingrid.ingredient_id;
+        return useringrid.id === subingrid.ingredient_id;
       });
     });
 
@@ -87,7 +92,7 @@ class App extends Component {
     );
 
     pendinguserrec.forEach(ingrid => {
-      almostcompletedUserRec.push(ingrid.ingredient);
+      almostcompletedUserRec.push(ingrid);
     });
 
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
