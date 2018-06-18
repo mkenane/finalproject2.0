@@ -3,7 +3,6 @@ import { Card } from "semantic-ui-react";
 
 class AdjustedRecipeIngredient extends Component {
   render() {
-    console.log(this.props);
     return (
       <div className="ui raised segment">
         <Card>

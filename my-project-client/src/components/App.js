@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import IngredientsContainer from "./IngredientsContainer";
 import UserRecipeContainer from "./UserRecipeContainer";
 import AdjustedRecipeContainer from "./AdjustedRecipeContainer";
-import Adjustments from "./Adjustments";
 
 class App extends Component {
   constructor() {
@@ -13,7 +12,8 @@ class App extends Component {
       adjustedRecipe: [],
       categoryIngredients: [],
       ingredients: [],
-      relationships: []
+      relationships: [],
+      submittedRecipe: []
     };
   }
   componentDidMount() {
@@ -30,6 +30,14 @@ class App extends Component {
       .then(jsonresp => this.setState({ categoryIngredients: jsonresp }));
   }
 
+  handleRecipeSubmit = event => {
+    let isolatingUserIngrids = this.state.userRecipe.map(ingrid => {
+      return ingrid.ingredient;
+    });
+    this.setState({ submittedRecipe: isolatingUserIngrids }, () =>
+      console.log(this.state.submittedRecipe)
+    );
+  };
   handleIngredientClickAddition = ingrid => {
     let foundIngrid = this.state.userRecipe.find(ingr => {
       return ingr.ingredient.id === ingrid.ingredient.id;
@@ -47,68 +55,12 @@ class App extends Component {
     this.setState({ userRecipe: newUserRecipe });
   };
 
-  handleGlutenFreeClick = event => {
-    console.log(event.target.id);
-    let ingredientsToReplace = [];
-    let pendinguserrec = [];
-    let replacingrelationships = [];
-    let replacingingrids = [];
-    let almostcompletedUserRec = [];
-
-    let isolatingUserIngrids = this.state.userRecipe.map(ingrid => {
-      return ingrid.ingredient;
-    });
-    console.log(isolatingUserIngrids);
-    console.log(this.state.userRecipe);
-
-    isolatingUserIngrids.forEach(useringrid =>
-      this.state.categoryIngredients.forEach(catingrid => {
-        if (
-          useringrid.id === catingrid.ingredient_id &&
-          catingrid.category_id === parseInt(event.target.id, 10)
-        ) {
-          ingredientsToReplace.push(useringrid);
-          console.log(useringrid);
-          pendinguserrec = isolatingUserIngrids.filter(ui => ui !== useringrid);
-        }
-      })
-    );
-    console.log(pendinguserrec);
-    console.log(ingredientsToReplace);
-    console.log(this.state.relationships);
-
-    replacingrelationships = ingredientsToReplace.map(useringrid => {
-      return this.state.relationships.find(subingrid => {
-        return useringrid.id === subingrid.ingredient_id;
-      });
-    });
-
-    replacingrelationships.forEach(repre =>
-      this.state.ingredients.forEach(ingrid => {
-        if (repre.replacement_ingredient_id === ingrid.id) {
-          replacingingrids.push(ingrid);
-        }
-      })
-    );
-
-    pendinguserrec.forEach(ingrid => {
-      almostcompletedUserRec.push(ingrid);
-    });
-
-    let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
-
-    console.log(completedUserRec);
-    this.setState({ adjustedRecipe: completedUserRec }, () =>
-      console.log(this.state.adjustedRecipe)
-    );
-  };
-
   render() {
     const userRec =
       this.state.userRecipe.length > 0 ? this.state.userRecipe : [];
 
-    const adjustedRec =
-      this.state.adjustedRecipe.length > 0 ? this.state.adjustedRecipe : [];
+    const submittedRec =
+      this.state.submittedRecipe.length > 0 ? this.state.submittedRecipe : [];
 
     return (
       <div className="ui grid">
@@ -116,9 +68,10 @@ class App extends Component {
           <UserRecipeContainer
             userRec={userRec}
             handleIngredientClickRemoval={this.handleIngredientClickRemoval}
+            handleRecipeSubmit={this.handleRecipeSubmit}
           />
-          <Adjustments handleGlutenFreeClick={this.handleGlutenFreeClick} />
-          <AdjustedRecipeContainer adjustedRec={adjustedRec} />
+
+          <AdjustedRecipeContainer submittedRec={submittedRec} />
         </div>
 
         <div className="seven wide column">
