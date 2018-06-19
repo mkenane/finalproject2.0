@@ -15,7 +15,9 @@ class AdjustedRecipeContainer extends Component {
       submittedRecipe: [],
       kosherclicker: false,
       dairyclicker: false,
-      glutenfreeclicker: false
+      glutenfreeclicker: false,
+      veggieclicker: false,
+      lowcalorieclicker: false
     };
   }
   componentDidMount() {
@@ -191,6 +193,114 @@ class AdjustedRecipeContainer extends Component {
     this.setState({ kosherclicker: !this.state.kosherclicker });
   };
 
+  handleVeggieClick = event => {
+    let ingredientsToReplace = [];
+    let pendinguserrec = [];
+    let replacingrelationships = [];
+    let replacingingrids = [];
+    let almostcompletedUserRec = [];
+
+    let isolatingUserIngrids =
+      this.state.adjustedRecipe.length > 0
+        ? this.state.adjustedRecipe
+        : this.props.submittedRec;
+    console.log(isolatingUserIngrids);
+
+    isolatingUserIngrids.forEach(useringrid =>
+      this.state.categoryIngredients.forEach(catingrid => {
+        if (
+          useringrid.id === catingrid.ingredient_id &&
+          catingrid.category_id === parseInt(event.target.id, 10)
+        ) {
+          ingredientsToReplace.push(useringrid);
+          pendinguserrec = isolatingUserIngrids.filter(ui => ui !== useringrid);
+        }
+      })
+    );
+
+    replacingrelationships = ingredientsToReplace.map(useringrid => {
+      return this.state.relationships.find(subingrid => {
+        return useringrid.id === subingrid.ingredient_id;
+      });
+    });
+
+    replacingrelationships.forEach(repre =>
+      this.state.ingredients.forEach(ingrid => {
+        if (repre.replacement_ingredient_id === ingrid.id) {
+          replacingingrids.push(ingrid);
+        }
+      })
+    );
+
+    pendinguserrec.forEach(ingrid => {
+      almostcompletedUserRec.push(ingrid);
+    });
+
+    let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
+
+    this.setState({ adjustedRecipe: completedUserRec });
+    this.setState({ submittedRecipe: completedUserRec }, () =>
+      console.log(this.state.submittedRecipe)
+    );
+    console.log(this.state.adjustedRecipe);
+    this.setState({ veggieclicker: !this.state.veggieclicker });
+  };
+
+  handleLowCalorieClick = event => {
+    let ingredientsToReplace = [];
+    let pendinguserrec = [];
+    let replacingrelationships = [];
+    let replacingingrids = [];
+    let almostcompletedUserRec = [];
+
+    let isolatingUserIngrids =
+      this.state.adjustedRecipe.length > 0
+        ? this.state.adjustedRecipe
+        : this.props.submittedRec;
+    console.log(isolatingUserIngrids);
+
+    isolatingUserIngrids.forEach(useringrid =>
+      this.state.categoryIngredients.forEach(catingrid => {
+        if (
+          useringrid.id === catingrid.ingredient_id &&
+          catingrid.category_id === parseInt(event.target.id, 10)
+        ) {
+          ingredientsToReplace.push(useringrid);
+          pendinguserrec = isolatingUserIngrids.filter(ui => ui !== useringrid);
+        }
+      })
+    );
+
+    replacingrelationships = ingredientsToReplace.map(useringrid => {
+      return this.state.relationships.find(subingrid => {
+        return useringrid.id === subingrid.ingredient_id;
+      });
+    });
+
+    replacingrelationships.forEach(repre =>
+      this.state.ingredients.forEach(ingrid => {
+        if (repre.replacement_ingredient_id === ingrid.id) {
+          replacingingrids.push(ingrid);
+        }
+      })
+    );
+
+    pendinguserrec.forEach(ingrid => {
+      almostcompletedUserRec.push(ingrid);
+    });
+
+    let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
+
+    this.setState({ adjustedRecipe: completedUserRec });
+    this.setState({ submittedRecipe: completedUserRec }, () =>
+      console.log(this.state.submittedRecipe)
+    );
+    console.log(this.state.adjustedRecipe);
+    this.setState({ lowcalorieclicker: !this.state.lowcalorieclicker }, () =>
+      console.log(this.state.lowcalorieclicker)
+    );
+  };
+
   render() {
     const adjustedRec =
       this.state.adjustedRecipe.length > 0
@@ -203,9 +313,13 @@ class AdjustedRecipeContainer extends Component {
           handleGlutenFreeClick={this.handleGlutenFreeClick}
           handleDairyFreeClick={this.handleDairyFreeClick}
           handleKosherClick={this.handleKosherClick}
+          handleVeggieClick={this.handleVeggieClick}
+          handleLowCalorieClick={this.handleLowCalorieClick}
           kosherclicker={this.state.kosherclicker}
           glutenfreeclicker={this.state.glutenfreeclicker}
           dairyclicker={this.state.dairyclicker}
+          veggieclicker={this.state.veggieclicker}
+          lowcalorieclicker={this.state.lowcalorieclicker}
         />
         Adjusted Recipe:
         {adjustedRec.map(ingred => {
