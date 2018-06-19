@@ -13,7 +13,9 @@ class AdjustedRecipeContainer extends Component {
       ingredients: [],
       relationships: [],
       submittedRecipe: [],
-      clicker: false
+      kosherclicker: false,
+      dairyclicker: false,
+      glutenfreeclicker: false
     };
   }
   componentDidMount() {
@@ -79,6 +81,7 @@ class AdjustedRecipeContainer extends Component {
       console.log(this.state.submittedRecipe)
     );
     console.log(this.state.adjustedRecipe);
+    this.setState({ glutenfreeclicker: !this.state.glutenfreeclicker });
   };
 
   handleDairyFreeClick = event => {
@@ -131,9 +134,11 @@ class AdjustedRecipeContainer extends Component {
       console.log(this.state.submittedRecipe)
     );
     console.log(this.state.adjustedRecipe);
+
+    this.setState({ dairyclicker: !this.state.dairyclicker });
   };
 
-  handleKosherFreeClick = event => {
+  handleKosherClick = event => {
     let ingredientsToReplace = [];
     let pendinguserrec = [];
     let replacingrelationships = [];
@@ -183,6 +188,7 @@ class AdjustedRecipeContainer extends Component {
       console.log(this.state.submittedRecipe)
     );
     console.log(this.state.adjustedRecipe);
+    this.setState({ kosherclicker: !this.state.kosherclicker });
   };
 
   render() {
@@ -196,6 +202,10 @@ class AdjustedRecipeContainer extends Component {
         <Adjustments
           handleGlutenFreeClick={this.handleGlutenFreeClick}
           handleDairyFreeClick={this.handleDairyFreeClick}
+          handleKosherClick={this.handleKosherClick}
+          kosherclicker={this.state.kosherclicker}
+          glutenfreeclicker={this.state.glutenfreeclicker}
+          dairyclicker={this.state.dairyclicker}
         />
         Adjusted Recipe:
         {adjustedRec.map(ingred => {

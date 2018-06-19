@@ -1,23 +1,22 @@
 import React, { Component } from "react";
 
 class Adjustments extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      clicked: false
-    };
-  }
-
   render() {
-    const act = this.state.clicked ? "active" : "";
+    const kosheract = this.props.kosherclicker ? "active" : "";
+    const glutenfreeact = this.props.glutenfreeclicker ? "active" : "";
+    const dairyact = this.props.dairyclicker ? "active" : "";
+
+    const colorkosheract = this.props.kosherclicker ? "red" : "";
+    const colorglutenfreeact = this.props.glutenfreeclicker ? "yellow" : "";
+    const colordairyact = this.props.dairyclicker ? "teal" : "";
+
     return (
       <div className="ui raised segment">
         Select adjustments :
         <div>
           <button
             id="4"
-            className="ui button"
+            className={`ui ${colorglutenfreeact} button ${glutenfreeact}`}
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleGlutenFreeClick}
           >
@@ -25,15 +24,15 @@ class Adjustments extends Component {
           </button>
           <button
             id="1"
-            className={`ui button ${act}`}
+            className={`ui ${colorkosheract} button ${kosheract}`}
             style={{ width: 130, height: 30 }}
-            onClick={this.props.handleKosherFreeClick}
+            onClick={this.props.handleKosherClick}
           >
             kosher
           </button>
           <button
             id="2"
-            className="ui button"
+            className={`ui ${colordairyact} button ${dairyact}`}
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleDairyFreeClick}
           >
