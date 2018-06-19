@@ -5,7 +5,7 @@ class UserRecipeIngredient extends Component {
   render() {
     return (
       <div className="ui raised segment">
-        <Card>
+        <Card color="red">
           <Card.Content>{this.props.ingredient.ingredient.name}</Card.Content>
           <button
             className="ui button"

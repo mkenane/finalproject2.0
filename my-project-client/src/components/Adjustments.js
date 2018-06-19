@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 
 class Adjustments extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      clicked: false
+    };
+  }
+
   render() {
-    // console.log(this.props);
+    const act = this.state.clicked ? "active" : "";
     return (
       <div className="ui raised segment">
         Select adjustments :
@@ -17,7 +25,7 @@ class Adjustments extends Component {
           </button>
           <button
             id="1"
-            className="ui button"
+            className={`ui button ${act}`}
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleKosherFreeClick}
           >

@@ -12,7 +12,8 @@ class AdjustedRecipeContainer extends Component {
       categoryIngredients: [],
       ingredients: [],
       relationships: [],
-      submittedRecipe: []
+      submittedRecipe: [],
+      clicker: false
     };
   }
   componentDidMount() {
@@ -36,7 +37,10 @@ class AdjustedRecipeContainer extends Component {
     let replacingingrids = [];
     let almostcompletedUserRec = [];
 
-    let isolatingUserIngrids = this.props.submittedRec;
+    let isolatingUserIngrids =
+      this.state.adjustedRecipe.length > 0
+        ? this.state.adjustedRecipe
+        : this.props.submittedRec;
 
     isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
