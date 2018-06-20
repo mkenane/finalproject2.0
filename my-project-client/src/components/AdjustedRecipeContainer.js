@@ -36,6 +36,17 @@ class AdjustedRecipeContainer extends Component {
       .then(jsonresp => this.setState({ categoryIngredients: jsonresp }));
   }
 
+  handleRecipeClear = event => {
+    this.setState({ submittedRecipe: [] }, () =>
+      console.log(this.state.submittedRecipe)
+    );
+    this.setState({ adjustedRecipe: [] }, () =>
+      console.log(this.state.adjustedRecipe)
+    );
+
+    this.props.handleRecipeReset(event);
+  };
+
   handleGlutenFreeClick = event => {
     let ingredientsToReplace = [];
     let pendinguserrec = [];
@@ -314,6 +325,13 @@ class AdjustedRecipeContainer extends Component {
             <AdjustedRecipeIngredient key={ingred.id} ingredient={ingred} />
           );
         })}
+        <button
+          className="ui button"
+          style={{ width: 130, height: 30 }}
+          onClick={this.handleRecipeClear}
+        >
+          reset
+        </button>
       </div>
     );
   }

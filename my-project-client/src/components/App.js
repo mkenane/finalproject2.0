@@ -76,7 +76,10 @@ class App extends Component {
             handleRecipeReset={this.handleRecipeReset}
           />
 
-          <AdjustedRecipeContainer submittedRec={submittedRec} />
+          <AdjustedRecipeContainer
+            submittedRec={submittedRec}
+            handleRecipeReset={this.handleRecipeReset}
+          />
         </div>
 
         <div className="seven wide column">
