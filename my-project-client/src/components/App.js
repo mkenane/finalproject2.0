@@ -13,7 +13,8 @@ class App extends Component {
       categoryIngredients: [],
       ingredients: [],
       relationships: [],
-      submittedRecipe: []
+      submittedRecipe: [],
+      colored: []
     };
   }
   componentDidMount() {
@@ -30,13 +31,16 @@ class App extends Component {
       .then(jsonresp => this.setState({ categoryIngredients: jsonresp }));
   }
 
+  handleRecipeReset = event => {
+    this.setState({ userRecipe: [] });
+    this.setState({ submittedRecipe: [] });
+  };
+
   handleRecipeSubmit = event => {
     let isolatingUserIngrids = this.state.userRecipe.map(ingrid => {
       return ingrid.ingredient;
     });
-    this.setState({ submittedRecipe: isolatingUserIngrids }, () =>
-      console.log(this.state.submittedRecipe)
-    );
+    this.setState({ submittedRecipe: isolatingUserIngrids });
   };
   handleIngredientClickAddition = ingrid => {
     let foundIngrid = this.state.userRecipe.find(ingr => {
@@ -69,6 +73,7 @@ class App extends Component {
             userRec={userRec}
             handleIngredientClickRemoval={this.handleIngredientClickRemoval}
             handleRecipeSubmit={this.handleRecipeSubmit}
+            handleRecipeReset={this.handleRecipeReset}
           />
 
           <AdjustedRecipeContainer submittedRec={submittedRec} />

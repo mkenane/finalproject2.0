@@ -19,12 +19,18 @@ class UserRecipeContainer extends Component {
           );
         })}
         <button
-          id="4"
           className="ui button"
           style={{ width: 130, height: 30 }}
           onClick={this.props.handleRecipeSubmit}
         >
           submit
+        </button>
+        <button
+          className="ui button"
+          style={{ width: 130, height: 30 }}
+          onClick={this.props.handleRecipeReset}
+        >
+          reset
         </button>
       </div>
     );

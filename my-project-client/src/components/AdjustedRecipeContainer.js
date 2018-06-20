@@ -17,7 +17,9 @@ class AdjustedRecipeContainer extends Component {
       dairyclicker: false,
       glutenfreeclicker: false,
       veggieclicker: false,
-      lowcalorieclicker: false
+      lowcalorieclicker: false,
+      userIngredientsReplaced: [],
+      relationshipsUsed: []
     };
   }
   componentDidMount() {
@@ -57,6 +59,7 @@ class AdjustedRecipeContainer extends Component {
         }
       })
     );
+    this.setState({ userIngredientsReplaced: ingredientsToReplace });
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -79,11 +82,10 @@ class AdjustedRecipeContainer extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     this.setState({ adjustedRecipe: completedUserRec });
-    this.setState({ submittedRecipe: completedUserRec }, () =>
-      console.log(this.state.submittedRecipe)
-    );
-    console.log(this.state.adjustedRecipe);
+    this.setState({ submittedRecipe: completedUserRec });
+
     this.setState({ glutenfreeclicker: !this.state.glutenfreeclicker });
+    this.setState({ relationshipsUsed: replacingrelationships });
   };
 
   handleDairyFreeClick = event => {
@@ -97,7 +99,6 @@ class AdjustedRecipeContainer extends Component {
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
         : this.props.submittedRec;
-    console.log(isolatingUserIngrids);
 
     isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
@@ -132,10 +133,7 @@ class AdjustedRecipeContainer extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     this.setState({ adjustedRecipe: completedUserRec });
-    this.setState({ submittedRecipe: completedUserRec }, () =>
-      console.log(this.state.submittedRecipe)
-    );
-    console.log(this.state.adjustedRecipe);
+    this.setState({ submittedRecipe: completedUserRec });
 
     this.setState({ dairyclicker: !this.state.dairyclicker });
   };
@@ -151,7 +149,6 @@ class AdjustedRecipeContainer extends Component {
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
         : this.props.submittedRec;
-    console.log(isolatingUserIngrids);
 
     isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
@@ -186,10 +183,8 @@ class AdjustedRecipeContainer extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     this.setState({ adjustedRecipe: completedUserRec });
-    this.setState({ submittedRecipe: completedUserRec }, () =>
-      console.log(this.state.submittedRecipe)
-    );
-    console.log(this.state.adjustedRecipe);
+    this.setState({ submittedRecipe: completedUserRec });
+
     this.setState({ kosherclicker: !this.state.kosherclicker });
   };
 
@@ -204,7 +199,6 @@ class AdjustedRecipeContainer extends Component {
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
         : this.props.submittedRec;
-    console.log(isolatingUserIngrids);
 
     isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
@@ -239,10 +233,8 @@ class AdjustedRecipeContainer extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     this.setState({ adjustedRecipe: completedUserRec });
-    this.setState({ submittedRecipe: completedUserRec }, () =>
-      console.log(this.state.submittedRecipe)
-    );
-    console.log(this.state.adjustedRecipe);
+    this.setState({ submittedRecipe: completedUserRec });
+
     this.setState({ veggieclicker: !this.state.veggieclicker });
   };
 
@@ -257,7 +249,6 @@ class AdjustedRecipeContainer extends Component {
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
         : this.props.submittedRec;
-    console.log(isolatingUserIngrids);
 
     isolatingUserIngrids.forEach(useringrid =>
       this.state.categoryIngredients.forEach(catingrid => {
@@ -292,13 +283,9 @@ class AdjustedRecipeContainer extends Component {
     let completedUserRec = replacingingrids.concat(almostcompletedUserRec);
 
     this.setState({ adjustedRecipe: completedUserRec });
-    this.setState({ submittedRecipe: completedUserRec }, () =>
-      console.log(this.state.submittedRecipe)
-    );
-    console.log(this.state.adjustedRecipe);
-    this.setState({ lowcalorieclicker: !this.state.lowcalorieclicker }, () =>
-      console.log(this.state.lowcalorieclicker)
-    );
+    this.setState({ submittedRecipe: completedUserRec });
+
+    this.setState({ lowcalorieclicker: !this.state.lowcalorieclicker });
   };
 
   render() {
