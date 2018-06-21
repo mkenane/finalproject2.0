@@ -20,22 +20,28 @@ class AdjustedRecipeIngredient extends Component {
   }
 
   handleMoreInfo = () => {
-    console.log(this.props);
+    let memo = ``;
     let replacementingrid = this.state.relationships.filter(ingrid => {
       return ingrid.replacement_ingredient_id === this.props.ingredient.id;
     })[0];
-    let memo = `We replaced ${replacementingrid.ingredient_name} with ${
-      this.props.ingredient.name
-    } because it -replacementingrid.nature- and because --random(randomChefPhrases) `;
-    console.log(replacementingrid);
-    console.log(memo);
-    this.setState({ infoToDisplay: memo });
-    this.setState({ clickedMoreInfo: !this.state.clickedMoreInfo });
+
+    if (replacementingrid !== undefined) {
+      memo = `We replaced ${replacementingrid.ingredient_name} with ${
+        this.props.ingredient.name
+      } because we have absolutely no clue, enjoy! `;
+
+      this.setState({ infoToDisplay: memo });
+      this.setState({ clickedMoreInfo: !this.state.clickedMoreInfo });
+    } else {
+      memo = "This ingredient was not replaced, luckily for you ";
+      this.setState({ clickedMoreInfo: !this.state.clickedMoreInfo });
+      this.setState({ infoToDisplay: memo });
+    }
   };
 
   render() {
     const info = this.state.clickedMoreInfo ? this.state.infoToDisplay : "";
-    console.log(this.state.clickedMoreInfo);
+
     return (
       <div className="ui raised segment">
         <Card>

@@ -19,7 +19,8 @@ class AdjustedRecipeContainer extends Component {
       veggieclicker: false,
       lowcalorieclicker: false,
       userIngredientsReplaced: [],
-      relationshipsUsed: []
+      relationshipsUsed: [],
+      approvedcat: [1, 2, 3, 4, 5]
     };
   }
   componentDidMount() {
@@ -54,6 +55,20 @@ class AdjustedRecipeContainer extends Component {
     let replacingingrids = [];
     let almostcompletedUserRec = [];
 
+    console.log(this.state.approvedcat);
+    let approvedcatty = this.state.approvedcat.filter(
+      num => num !== parseInt(event.target.id, 10)
+    );
+    this.setState({ approvedcat: approvedcatty }, () =>
+      console.log(this.state.approvedcat)
+    );
+
+    let restricteding = this.state.categoryIngredients.filter(cating => {
+      return !approvedcatty.includes(cating.category_id);
+    });
+
+    console.log(restricteding);
+
     let isolatingUserIngrids =
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
@@ -81,6 +96,8 @@ class AdjustedRecipeContainer extends Component {
     replacingrelationships.forEach(repre =>
       this.state.ingredients.forEach(ingrid => {
         if (repre.replacement_ingredient_id === ingrid.id) {
+          console.log(ingrid);
+          console.log(repre.replacement_ingredient_id);
           replacingingrids.push(ingrid);
         }
       })
@@ -106,6 +123,20 @@ class AdjustedRecipeContainer extends Component {
     let replacingingrids = [];
     let almostcompletedUserRec = [];
 
+    console.log(this.state.approvedcat);
+    let approvedcatty = this.state.approvedcat.filter(
+      num => num !== parseInt(event.target.id, 10)
+    );
+    this.setState({ approvedcat: approvedcatty }, () =>
+      console.log(this.state.approvedcat)
+    );
+
+    let restricteding = this.state.categoryIngredients.filter(cating => {
+      return !approvedcatty.includes(cating.category_id);
+    });
+
+    console.log(restricteding);
+
     let isolatingUserIngrids =
       this.state.adjustedRecipe.length > 0
         ? this.state.adjustedRecipe
@@ -122,6 +153,7 @@ class AdjustedRecipeContainer extends Component {
         }
       })
     );
+    this.setState({ userIngredientsReplaced: ingredientsToReplace });
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -132,6 +164,8 @@ class AdjustedRecipeContainer extends Component {
     replacingrelationships.forEach(repre =>
       this.state.ingredients.forEach(ingrid => {
         if (repre.replacement_ingredient_id === ingrid.id) {
+          console.log(ingrid);
+          console.log(repre.replacement_ingredient_id);
           replacingingrids.push(ingrid);
         }
       })
@@ -146,7 +180,8 @@ class AdjustedRecipeContainer extends Component {
     this.setState({ adjustedRecipe: completedUserRec });
     this.setState({ submittedRecipe: completedUserRec });
 
-    this.setState({ dairyclicker: !this.state.dairyclicker });
+    this.setState({ dairyclicker: !this.state.glutenfreeclicker });
+    this.setState({ relationshipsUsed: replacingrelationships });
   };
 
   handleKosherClick = event => {
@@ -155,6 +190,20 @@ class AdjustedRecipeContainer extends Component {
     let replacingrelationships = [];
     let replacingingrids = [];
     let almostcompletedUserRec = [];
+
+    console.log(this.state.approvedcat);
+    let approvedcatty = this.state.approvedcat.filter(
+      num => num !== parseInt(event.target.id, 10)
+    );
+    this.setState({ approvedcat: approvedcatty }, () =>
+      console.log(this.state.approvedcat)
+    );
+
+    let restricteding = this.state.categoryIngredients.filter(cating => {
+      return !approvedcatty.includes(cating.category_id);
+    });
+
+    console.log(restricteding);
 
     let isolatingUserIngrids =
       this.state.adjustedRecipe.length > 0
@@ -172,6 +221,7 @@ class AdjustedRecipeContainer extends Component {
         }
       })
     );
+    this.setState({ userIngredientsReplaced: ingredientsToReplace });
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -182,6 +232,8 @@ class AdjustedRecipeContainer extends Component {
     replacingrelationships.forEach(repre =>
       this.state.ingredients.forEach(ingrid => {
         if (repre.replacement_ingredient_id === ingrid.id) {
+          console.log(ingrid);
+          console.log(repre.replacement_ingredient_id);
           replacingingrids.push(ingrid);
         }
       })
@@ -197,6 +249,7 @@ class AdjustedRecipeContainer extends Component {
     this.setState({ submittedRecipe: completedUserRec });
 
     this.setState({ kosherclicker: !this.state.kosherclicker });
+    this.setState({ relationshipsUsed: replacingrelationships });
   };
 
   handleVeggieClick = event => {
@@ -205,6 +258,20 @@ class AdjustedRecipeContainer extends Component {
     let replacingrelationships = [];
     let replacingingrids = [];
     let almostcompletedUserRec = [];
+
+    console.log(this.state.approvedcat);
+    let approvedcatty = this.state.approvedcat.filter(
+      num => num !== parseInt(event.target.id, 10)
+    );
+    this.setState({ approvedcat: approvedcatty }, () =>
+      console.log(this.state.approvedcat)
+    );
+
+    let restricteding = this.state.categoryIngredients.filter(cating => {
+      return !approvedcatty.includes(cating.category_id);
+    });
+
+    console.log(restricteding);
 
     let isolatingUserIngrids =
       this.state.adjustedRecipe.length > 0
@@ -222,6 +289,7 @@ class AdjustedRecipeContainer extends Component {
         }
       })
     );
+    this.setState({ userIngredientsReplaced: ingredientsToReplace });
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -232,6 +300,8 @@ class AdjustedRecipeContainer extends Component {
     replacingrelationships.forEach(repre =>
       this.state.ingredients.forEach(ingrid => {
         if (repre.replacement_ingredient_id === ingrid.id) {
+          console.log(ingrid);
+          console.log(repre.replacement_ingredient_id);
           replacingingrids.push(ingrid);
         }
       })
@@ -247,6 +317,7 @@ class AdjustedRecipeContainer extends Component {
     this.setState({ submittedRecipe: completedUserRec });
 
     this.setState({ veggieclicker: !this.state.veggieclicker });
+    this.setState({ relationshipsUsed: replacingrelationships });
   };
 
   handleLowCalorieClick = event => {
@@ -255,6 +326,20 @@ class AdjustedRecipeContainer extends Component {
     let replacingrelationships = [];
     let replacingingrids = [];
     let almostcompletedUserRec = [];
+
+    console.log(this.state.approvedcat);
+    let approvedcatty = this.state.approvedcat.filter(
+      num => num !== parseInt(event.target.id, 10)
+    );
+    this.setState({ approvedcat: approvedcatty }, () =>
+      console.log(this.state.approvedcat)
+    );
+
+    let restricteding = this.state.categoryIngredients.filter(cating => {
+      return !approvedcatty.includes(cating.category_id);
+    });
+
+    console.log(restricteding);
 
     let isolatingUserIngrids =
       this.state.adjustedRecipe.length > 0
@@ -272,6 +357,7 @@ class AdjustedRecipeContainer extends Component {
         }
       })
     );
+    this.setState({ userIngredientsReplaced: ingredientsToReplace });
 
     replacingrelationships = ingredientsToReplace.map(useringrid => {
       return this.state.relationships.find(subingrid => {
@@ -282,6 +368,8 @@ class AdjustedRecipeContainer extends Component {
     replacingrelationships.forEach(repre =>
       this.state.ingredients.forEach(ingrid => {
         if (repre.replacement_ingredient_id === ingrid.id) {
+          console.log(ingrid);
+          console.log(repre.replacement_ingredient_id);
           replacingingrids.push(ingrid);
         }
       })
@@ -297,6 +385,7 @@ class AdjustedRecipeContainer extends Component {
     this.setState({ submittedRecipe: completedUserRec });
 
     this.setState({ lowcalorieclicker: !this.state.lowcalorieclicker });
+    this.setState({ relationshipsUsed: replacingrelationships });
   };
 
   render() {

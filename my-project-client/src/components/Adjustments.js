@@ -38,7 +38,7 @@ class Adjustments extends Component {
             id="3"
             className={`ui ${colorveggieact} button ${veggieact}`}
             style={{ width: 130, height: 30 }}
-            onClick={this.props.handleVeggieClick}
+            onClick={this.props.handleGlutenFreeClick}
           >
             Veggie
           </button>
