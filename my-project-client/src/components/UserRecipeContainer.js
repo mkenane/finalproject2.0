@@ -5,7 +5,7 @@ import UserRecipeIngredient from "./UserRecipeIngredient";
 class UserRecipeContainer extends Component {
   render() {
     return (
-      <div className="ui raised segment">
+      <div className="ui raised segment" style={{ backgroundColor: "yellow" }}>
         Your Recipe:
         {this.props.userRec.map(ingred => {
           return (

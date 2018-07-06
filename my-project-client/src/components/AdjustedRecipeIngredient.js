@@ -55,6 +55,7 @@ class AdjustedRecipeIngredient extends Component {
             <i className="question circle icon" />
           </button>
         </Card>
+        TASTE NOT GUARANTEED
       </div>
     );
   }

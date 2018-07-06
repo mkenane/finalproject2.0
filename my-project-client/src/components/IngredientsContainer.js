@@ -35,7 +35,7 @@ class IngredientsContainer extends Component {
         : this.state.allIngredients;
 
     return (
-      <div className="ui raised segment">
+      <div className="ui raised segment" style={{ backgroundColor: "purple" }}>
         <SearchIngredients searchFunc={this.handleSearchChange} />
         <IngredientsList
           allIngredients={searchedIngreds}

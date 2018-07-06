@@ -10,11 +10,7 @@ class App extends Component {
     this.state = {
       userRecipe: [],
       adjustedRecipe: [],
-      categoryIngredients: [],
-      ingredients: [],
-      relationships: [],
-      submittedRecipe: [],
-      colored: []
+      submittedRecipe: []
     };
   }
   componentDidMount() {
@@ -81,12 +77,12 @@ class App extends Component {
             handleRecipeReset={this.handleRecipeReset}
           />
         </div>
-
         <div className="seven wide column">
           <IngredientsContainer
             handleIngredientClickAddition={this.handleIngredientClickAddition}
           />
         </div>
+        TASTE NOT GUARANTEED
       </div>
     );
   }

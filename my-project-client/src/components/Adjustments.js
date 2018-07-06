@@ -19,7 +19,7 @@ class Adjustments extends Component {
         Select adjustments :
         <div>
           <button
-            id="1"
+            id="4"
             className={`ui ${colorkosheract} button ${kosheract}`}
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleKosherClick}
@@ -43,7 +43,7 @@ class Adjustments extends Component {
             Veggie
           </button>
           <button
-            id="4"
+            id="1"
             className={`ui ${colorglutenfreeact} button ${glutenfreeact}`}
             style={{ width: 130, height: 30 }}
             onClick={this.props.handleGlutenFreeClick}
