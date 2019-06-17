@@ -1,4 +1,4 @@
-run this model for:
+#run this model for:
 
 # play wih number of subscribed users
 # play with number of classes where we eat the cost per user
